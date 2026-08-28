@@ -1,23 +1,22 @@
-import { executeSlashCommands } from '../../../slash-commands/SlashCommandParser.js';
-import { getContext } from '../../../extensions.js';
-import { eventSource, event_types } from '../../../../script.js';
-import { SlashCommandParser } from '../../../slash-commands/SlashCommandParser.js';
-import { SlashCommand } from '../../../slash-commands/SlashCommand.js';
+import { getContext } from '../../extensions.js';
+import { eventSource, event_types } from '../../script.js';
+import { SlashCommandParser } from '../../slash-commands/SlashCommandParser.js';
+import { SlashCommand } from '../../slash-commands/SlashCommand.js';
+import { executeSlashCommands } from '../../slash-commands/SlashCommandParser.js';
 
 // --- PASTE YOUR DISCORD WEBHOOK URL HERE ---
-const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1542955556061454417/zU2Lsn4YbMz9rNT5P1cInvPVd11D7fD1LvBioMGrkOIjSNTOiWPiOL7YdQ8JhLR7N7v-";
+const DISCORD_WEBHOOK_URL = "YOUR_WEBHOOK_URL_HERE";
 
 let activeDeadline = null;
 let taskName = "";
 let currentStage = 1;
-
-// Stores custom Discord avatars per character in your local browser storage
 const avatarStorageKey = 'Accountability_Avatars';
 let avatarMap = JSON.parse(localStorage.getItem(avatarStorageKey) || '{}');
 
 async function sendDiscordWebhook(charName, text) {
-    if (!DISCORD_WEBHOOK_URL || DISCORD_WEBHOOK_URL === "YOUR_WEBHOOK_URL_HERE") return;
+    if (!DISCORD_WEBHOOK_URL || DISCORD_WEBHOOK_URL === "https://discord.com/api/webhooks/1542955556061454417/zU2Lsn4YbMz9rNT5P1cInvPVd11D7fD1LvBioMGrkOIjSNTOiWPiOL7YdQ8JhLR7N7v-") return;
     
+    // Strip out the hidden timer tags so your phone notification looks clean
     const cleanText = text.replace(/\[SET_TIMER:[^\]]*\]/gi, '').replace(/\[TASK_DONE\]/gi, '').trim();
     if (!cleanText) return;
 
