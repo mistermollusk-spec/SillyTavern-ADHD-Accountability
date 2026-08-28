@@ -1,0 +1,7 @@
+{
+  "name": "Natural Language Accountability",
+  "description": "Reads hidden AI tags to run escalating background timers.",
+  "version": "2.0.0",
+  "author": "Local",
+  "main": "index.js"
+}
